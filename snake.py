@@ -20,6 +20,9 @@ class Snake():
     def create_snake(self) -> None:
         """Function creates snake body"""
 
+        # creating 3 turtle objects, that will be segments of snake body
+        # turtle objects shape is set to square, color to white and pen is up so there is no track left
+        # their coordinates are set that they together create one body
         for i in range(3):
             new_segment = Turtle()
             new_segment.shape("square")
@@ -30,7 +33,7 @@ class Snake():
 
     def move(self) -> None:
         """Function makes snake body move by defined move distance. Each snake body segment moves into position of previous one,
-         expect of 1st segment, which goes forward into set direction."""
+         expect the head of the snake, which goes forward into set direction."""
 
         # loop that goes through each snake body segment, expect 1st one
         for segm_num in range(len(self.snake_body) - 1,  0, -1):
@@ -45,25 +48,25 @@ class Snake():
         self.head.forward(MOVE_DISTANCE)
 
     def up(self) -> None:
-        """Function sets snakes head direction to up. If snake is heading """
+        """Function sets the head of the snake direction to up. Direction is not changed if current direction is down."""
 
         if self.head.heading() != DOWN:
             self.head.setheading(UP)
 
     def down(self) -> None:
-        """Function sets snakes head direction to down."""
+        """Function sets the head of the snake direction to down. Direction is not changed if current direction is up."""
 
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
 
     def left(self) -> None:
-        """Function sets snakes head direction to left."""
+        """Function sets the head of the snake direction to left.  Direction is not changed if current direction is right."""
 
         if self.head.heading() != RIGHT:
             self.head.setheading(LEFT)
 
     def right(self) -> None:
-        """Function sets snakes head direction to right."""
+        """Function sets the head of the snake direction to right.  Direction is not changed if current direction is left."""
 
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
