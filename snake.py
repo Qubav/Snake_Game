@@ -13,26 +13,23 @@ class Snake():
 
     def __init__(self) -> None:
         
+        # defining snake body as list with Turtle class objects, creating snake's body and defining 1st object in snake's body as head
         self.snake_body: list [Turtle] = []
         self.create_snake()
         self.head = self.snake_body[0]
 
     def create_snake(self) -> None:
-        """Function creates snake body"""
+        """Function creates snake's body"""
 
         # creating 3 turtle objects, that will be segments of snake body
         # turtle objects shape is set to square, color to white and pen is up so there is no track left
         # their coordinates are set that they together create one body
         for i in range(3):
-            new_segment = Turtle()
-            new_segment.shape("square")
-            new_segment.penup()
-            new_segment.color("white")
-            new_segment.goto(x = i * (-20), y = 0)
-            self.snake_body.append(new_segment)
+            position = (i * (-20), 0)
+            self.add_segment(position)
 
     def move(self) -> None:
-        """Function makes snake body move by defined move distance. Each snake body segment moves into position of previous one,
+        """Function makes snake's body move by defined move distance. Each snake's body segment moves into position of previous one,
          expect the head of the snake, which goes forward into set direction."""
 
         # loop that goes through each snake body segment, expect 1st one
@@ -70,3 +67,18 @@ class Snake():
 
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+    
+    def add_segment(self, position: tuple) -> None:
+        """Function creates new segment and adds it to snake's."""
+
+        # creating new Tutrle object that will be used as segment in snake's body, appending it to snake's body
+        new_segment = Turtle()
+        new_segment.shape("square")
+        new_segment.penup()
+        new_segment.color("white")
+        new_segment.goto(position[0], position[1])
+        self.snake_body.append(new_segment)
+
+    def extend(self):
+        """Function creates new snake's body segment that will be at the end of snake's body."""
+        self.add_segment(self.snake_body[-1].position())
