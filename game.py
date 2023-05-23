@@ -3,7 +3,7 @@ import turtle
 import time
 from snake import Snake
 from food import Food
-from score_board import ScoreBoard
+from scoreboard import ScoreBoard
 
 turtle.colormode(255)
 
@@ -22,7 +22,7 @@ class Game():
         # setting up Snake, Food and ScoreBoard objects
         self.snake = Snake()
         self.food = Food()
-        self.score_board = ScoreBoard()
+        self.scoreboard = ScoreBoard()
 
         # defining variable that is essential for game going on
         self.game_is_on = True
@@ -32,7 +32,7 @@ class Game():
 
         self.food.refresh()
         self.snake.extend()
-        self.score_board.increase_score()
+        self.scoreboard.increase_score()
 
     def play(self) -> None:
         """Function lets player to play."""
@@ -58,14 +58,14 @@ class Game():
                 
             # detecting snake's collision with walls - reason to end game
             if self.snake.head.xcor() > 280 or self.snake.head.xcor() < -280 or self.snake.head.ycor() > 280 or self.snake.head.ycor() < -280:
-                self.game_is_on = False
-                self.score_board.game_over()
+                self.scoreboard.reset()
+                self.snake.reset()
 
             # detect collision with tail  - reason to end game
             for segment in self.snake.snake_body[1:]:
                 if self.snake.head.distance(segment) < 10:
-                    self.game_is_on = False
-                    self.score_board.game_over()
+                    self.scoreboard.reset()
+                    self.snake.reset()
 
         # using Screen method to make window wait for click to end - this is available after game is over
         self.screen.exitonclick()
