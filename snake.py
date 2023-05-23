@@ -19,7 +19,7 @@ class Snake():
         self.head = self.snake_body[0]
 
     def create_snake(self) -> None:
-        """Function creates snake's body"""
+        """Method creates snake's body"""
 
         # creating 3 turtle objects, that will be segments of snake body
         # turtle objects shape is set to square, color to white and pen is up so there is no track left
@@ -29,7 +29,7 @@ class Snake():
             self.add_segment(position)
 
     def move(self) -> None:
-        """Function makes snake's body move by defined move distance. Each snake's body segment moves into position of previous one,
+        """Method makes snake's body move by defined move distance. Each snake's body segment moves into position of previous one,
          expect the head of the snake, which goes forward into set direction."""
 
         # loop that goes through each snake body segment, expect 1st one
@@ -45,31 +45,31 @@ class Snake():
         self.head.forward(MOVE_DISTANCE)
 
     def up(self) -> None:
-        """Function sets the head of the snake direction to up. Direction is not changed if current direction is down."""
+        """Method sets the head of the snake direction to up. Direction is not changed if current direction is down."""
 
         if self.head.heading() != DOWN:
             self.head.setheading(UP)
 
     def down(self) -> None:
-        """Function sets the head of the snake direction to down. Direction is not changed if current direction is up."""
+        """Method sets the head of the snake direction to down. Direction is not changed if current direction is up."""
 
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
 
     def left(self) -> None:
-        """Function sets the head of the snake direction to left.  Direction is not changed if current direction is right."""
+        """Method sets the head of the snake direction to left.  Direction is not changed if current direction is right."""
 
         if self.head.heading() != RIGHT:
             self.head.setheading(LEFT)
 
     def right(self) -> None:
-        """Function sets the head of the snake direction to right.  Direction is not changed if current direction is left."""
+        """Method sets the head of the snake direction to right.  Direction is not changed if current direction is left."""
 
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
     
     def add_segment(self, position: tuple) -> None:
-        """Function creates new segment and adds it to snake's."""
+        """Method creates new segment and adds it to snake's."""
 
         # creating new Tutrle object that will be used as segment in snake's body, appending it to snake's body
         new_segment = Turtle()
@@ -80,10 +80,11 @@ class Snake():
         self.snake_body.append(new_segment)
 
     def extend(self):
-        """Function creates new snake's body segment that will be at the end of snake's body."""
+        """Method creates new snake's body segment that will be at the end of snake's body."""
         self.add_segment(self.snake_body[-1].position())
 
     def reset(self):
+        """Method creates new snake body."""
 
         for segment in self.snake_body:
             segment.goto(1000, 1000)
