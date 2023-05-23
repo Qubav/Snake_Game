@@ -2,6 +2,7 @@ from turtle import Turtle
 
 ALIGNMENT = "center"
 FONT = ('Courier', 20, 'normal')
+PATH = "data.txt"
 
 class ScoreBoard(Turtle):
 
@@ -12,7 +13,9 @@ class ScoreBoard(Turtle):
         self.penup()
         self.goto(0, 270)
         self.score = 0
-        self.highest_score = 0
+        self.highest_score = None
+
+        self.check_highest_score_data()
         self.update_scoreboard()
     
     def update_scoreboard(self):
@@ -30,10 +33,23 @@ class ScoreBoard(Turtle):
         if self.score > self.highest_score:
 
             self.highest_score = self.score
+            self.update_highest_score_data()
         
         self.score = 0
         self.update_scoreboard()
         
+    def check_highest_score_data(self):
+        """Reading data from .txt filer and assigning it highest score attribute value."""
+
+        with open("data.txt") as file:
+            value = int(file.read())
+        
+        self.highest_score = value
+    
+    def update_highest_score_data(self):
+
+        with open("data.txt", mode = "w") as file:
+            file.write(f"{self.highest_score}")
 
         
     
