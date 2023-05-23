@@ -2,7 +2,7 @@ from turtle import Turtle
 
 ALIGNMENT = "center"
 FONT = ('Courier', 20, 'normal')
-PATH = "data.txt"
+PATH = "/data.txt"
 
 class ScoreBoard(Turtle):
 
